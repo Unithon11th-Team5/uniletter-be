@@ -18,25 +18,25 @@ public class Member extends BaseEntity {
         super(null);
     }
 
-    private Member(final UUID id, final String nickname, final String credential) {
+    private Member(final UUID id, final String nickname, final String identifier) {
         super(id);
         this.nickname = nickname;
-        this.credential = credential;
+        this.identifier = identifier;
     }
 
     @Builder
-    public Member(final String nickname, final String credential) {
+    public Member(final String nickname, final String identifier) {
         super(null);
         this.nickname = nickname;
-        this.credential = credential;
+        this.identifier = identifier;
     }
 
     @Column(unique = true, nullable = false)
     private String nickname;
 
-    private String credential;
+    private String identifier;
 
-    public static Member create(final String nickname, final String credential) {
-        return new Member(null, nickname, credential);
+    public static Member create(final String nickname, final String identifier) {
+        return new Member(null, nickname, identifier);
     }
 }
