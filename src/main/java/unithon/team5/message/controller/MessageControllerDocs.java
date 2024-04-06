@@ -74,25 +74,27 @@ public interface MessageControllerDocs {
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     required = true,
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = MessageResponse.class),
+                            schema = @Schema(implementation = MessageListResponse.class),
                             examples = {
                                     @ExampleObject(name = "MessageRequestExample", value = """
-                                            [
-                                             	{
-                                             		"id": "메시지 고유 UUID",
-                                             		"senderName": "보낸 사람이 설정한 닉네임",
-                                             		"content": "메시지 내용",
-                                             		"sentAt": "2024-04-06",
-                                             		"type": "메시지 타입"
-                                             	},
-                                             	{
-                                             		"id": "메시지 고유 UUID",
-                                             		"senderName": "보낸 사람이 설정한 닉네임",
-                                             		"content": "메시지 내용",
-                                             		"sentAt": "2024-04-06",
-                                             		"type": "메시지 타입"
-                                             	}
-                                             ]""")
+                                            {
+                                            	"messages": [
+                                            		{
+                                            			"id": "메시지 고유 UUID",
+                                            			"senderName": "보낸 사람이 설정한 닉네임",
+                                            			"content": "메시지 내용",
+                                            			"sentAt": "2024-04-06",
+                                            			"type": "메시지 타입"
+                                            		},
+                                            		{
+                                            			"id": "메시지 고유 UUID",
+                                            			"senderName": "보낸 사람이 설정한 닉네임",
+                                            			"content": "메시지 내용",
+                                            			"sentAt": "2024-04-06",
+                                            			"type": "메시지 타입"
+                                            		}
+                                            	]
+                                            }""")
                             })))
     ResponseEntity<MessageListResponse> getAllMessages(@Parameter(hidden = true) final Member member);
 
