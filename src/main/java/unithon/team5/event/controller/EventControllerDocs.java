@@ -36,7 +36,8 @@ public interface EventControllerDocs {
                             examples = {
                                     @ExampleObject(name = "EventAddRequestExample", value = """
                                             {
-                                            \t"content": "메시지 내용",
+                                            \t"content": "이벤트 내용",
+                                            \t"type": "이벤트 타입",
                                             \t"plannedAt": "해당 이벤트 날짜"
                                             }""")
                             })))
