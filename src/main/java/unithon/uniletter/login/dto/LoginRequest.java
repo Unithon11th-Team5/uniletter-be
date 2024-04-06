@@ -13,7 +13,4 @@ public record LoginRequest(
         String email
 ) {
 
-    public Optional<String> getName() {
-        return Optional.ofNullable(name);
-    }
 }
