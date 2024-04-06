@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import unithon.team5.common.BaseEntity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +17,7 @@ public class Event extends BaseEntity {
         super(null);
     }
 
-    private Event(final UUID id, final UUID memberId, final String content, final LocalDateTime plannedAt) {
+    private Event(final UUID id, final UUID memberId, final String content, final LocalDate plannedAt) {
         super(id);
         this.memberId = memberId;
         this.content = content;
@@ -25,7 +25,7 @@ public class Event extends BaseEntity {
     }
 
     @Builder
-    public Event(final UUID memberId, final String content, final LocalDateTime plannedAt) {
+    public Event(final UUID memberId, final String content, final LocalDate plannedAt) {
         this(null, memberId, content, plannedAt);
     }
 
@@ -36,9 +36,9 @@ public class Event extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
-    private LocalDateTime plannedAt;
+    private LocalDate plannedAt;
 
-    public static Event create(final UUID memberId, final String content, final LocalDateTime plannedAt) {
+    public static Event create(final UUID memberId, final String content, final LocalDate plannedAt) {
         return new Event(null, memberId, content, plannedAt);
     }
 }
