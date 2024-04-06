@@ -17,9 +17,9 @@ public class LoginService {
 
     @Transactional
     public String createToken(final String idToken, final String email) {
-        final String memberAppleIdentifier = null;
-        final Member registeredMember = memberRepository.findByCredential(memberAppleIdentifier)
-                .orElseGet(() -> registerMember(memberAppleIdentifier, email));
+        final String memberIdentifier = jwtProvider.decodeSub(idToken);
+        final Member registeredMember = memberRepository.findByIdentifier(memberIdentifier)
+                .orElseGet(() -> registerMember(memberIdentifier, email));
         final UUID id = registeredMember.getId();
         return jwtProvider.createAccessTokenWith(id);
     }
@@ -28,7 +28,7 @@ public class LoginService {
         final String nickname = parseEmail(email);
         final Member member = Member.builder()
                 .nickname(nickname)
-                .credential(memberAppleIdentifier)
+                .identifier(memberAppleIdentifier)
                 .build();
         return memberRepository.save(member);
     }
