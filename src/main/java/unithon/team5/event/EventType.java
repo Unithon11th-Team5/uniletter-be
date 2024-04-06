@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public enum EventType {
 
-    CHEER("응원", "CHEER UP"),
+    CHEER_UP("응원", "CHEER UP"),
     BIRTHDAY("생일", "BIRTHDAY"),
-    THANKS_GIVING("명절", "THANKS_GIVING"),
+    THANKSGIVING("명절", "THANKS_GIVING"),
     CHRISTMAS("연말", "CHRISTMAS"),
     MARRIAGE("결혼", "MARRIAGE"),
     NON_EVENT("일상", "NON_EVENT");
