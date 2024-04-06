@@ -16,6 +16,7 @@ import unithon.team5.member.Member;
 import unithon.team5.message.dto.MessageListResponse;
 import unithon.team5.message.dto.MessageRequest;
 import unithon.team5.message.dto.MessageResponse;
+import unithon.team5.message.dto.UnreadMessageResponse;
 
 import java.util.List;
 import java.util.UUID;
@@ -60,8 +61,8 @@ public interface MessageControllerDocs {
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     required = true,
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = MessageResponse.class))))
-    ResponseEntity<List<MessageResponse>> getUnreadMessages(
+                            schema = @Schema(implementation = UnreadMessageResponse.class))))
+    ResponseEntity<UnreadMessageResponse> getUnreadMessages(
             @Parameter(hidden = true)
             final Member member);
 
