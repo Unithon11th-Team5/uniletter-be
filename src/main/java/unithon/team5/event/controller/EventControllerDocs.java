@@ -54,7 +54,7 @@ public interface EventControllerDocs {
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
     @Operation(summary = "이벤트 조회")
-    ResponseEntity<EventResponse> readAllEvent(
+    ResponseEntity<List<EventResponse>> readAllEvent(
             @Parameter(description = "member id", example = "ete-dfdfd-fdfder", required = true)
             @RequestParam final String memberId);
 

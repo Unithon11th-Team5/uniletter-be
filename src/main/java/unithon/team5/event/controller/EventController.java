@@ -26,11 +26,10 @@ public class EventController implements EventControllerDocs {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<EventResponse> readAllEvent(@RequestParam final String memberId) {
-        final EventResponse response = eventService.findMemberEventAfterToday(memberId)
-                .map(EventResponse::from)
-                .orElse(null);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<List<EventResponse>> readAllEvent(@RequestParam final String memberId) {
+        final var events = eventService.findMemberEventAfterToday(memberId);
+        final List<EventResponse> responses = EventResponse.createList(events);
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/events/types")
