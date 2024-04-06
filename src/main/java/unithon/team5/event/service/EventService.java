@@ -28,6 +28,7 @@ public class EventService {
         return eventId.toString();
     }
 
+    @Transactional(readOnly = true)
     public Optional<Event> findMemberEventAfterToday(final String memberId) {
         final UUID memberUUID = UUID.fromString(memberId);
         return eventRepository.findEventAfterToday(memberUUID, LocalDate.now().atStartOfDay());
