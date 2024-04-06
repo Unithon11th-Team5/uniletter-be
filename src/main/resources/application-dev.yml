@@ -13,3 +13,9 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+
+oauth:
+  apple:
+    clientId: adbcd
+jwt:
+  secret: "ToiguaOaVf3o3wD8XSnJV10MlWo0exackfAofpscMqs="
