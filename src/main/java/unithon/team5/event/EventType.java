@@ -1,6 +1,6 @@
-package unithon.team5.message;
+package unithon.team5.event;
 
-public enum MessageType {
+public enum EventType {
     CHEER,
     BIRTHDAY,
     HOLIDAY,

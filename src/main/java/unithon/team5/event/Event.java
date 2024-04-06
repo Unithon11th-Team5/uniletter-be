@@ -2,6 +2,8 @@ package unithon.team5.event;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Builder;
 import lombok.Getter;
 import unithon.team5.common.BaseEntity;
@@ -17,16 +19,17 @@ public class Event extends BaseEntity {
         super(null);
     }
 
-    private Event(final UUID id, final UUID memberId, final String content, final LocalDate plannedAt) {
+    private Event(final UUID id, final UUID memberId, final String content, final EventType type, final LocalDate plannedAt) {
         super(id);
         this.memberId = memberId;
         this.content = content;
+        this.type = type;
         this.plannedAt = plannedAt;
     }
 
     @Builder
-    public Event(final UUID memberId, final String content, final LocalDate plannedAt) {
-        this(null, memberId, content, plannedAt);
+    public Event(final UUID memberId, final String content, final EventType type, final LocalDate plannedAt) {
+        this(null, memberId, content, type, plannedAt);
     }
 
     @Column(updatable = false, nullable = false)
@@ -36,9 +39,13 @@ public class Event extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private EventType type;
+
+    @Column(nullable = false)
     private LocalDate plannedAt;
 
-    public static Event create(final UUID memberId, final String content, final LocalDate plannedAt) {
-        return new Event(null, memberId, content, plannedAt);
+    public static Event create(final UUID memberId, final String content, final EventType type, final LocalDate plannedAt) {
+        return new Event(null, memberId, content, type, plannedAt);
     }
 }
