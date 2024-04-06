@@ -19,11 +19,13 @@ public class Message extends BaseEntity {
     private Message(final UUID senderId,
                     final UUID receiverId,
                     final String senderName,
+                    final String content,
                     final LocalDateTime sendPlannedAt) {
         super(null);
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.senderName = senderName;
+        this.content = content;
         this.sendPlannedAt = sendPlannedAt;
     }
 
@@ -44,7 +46,8 @@ public class Message extends BaseEntity {
     public static Message create(final UUID senderId,
                                  final UUID receiverId,
                                  final String senderName,
+                                 final String content,
                                  final LocalDateTime sendPlannedAt) {
-        return new Message(senderId, receiverId, senderName, sendPlannedAt);
+        return new Message(senderId, receiverId, senderName, content, sendPlannedAt);
     }
 }
