@@ -56,11 +56,7 @@ public interface MessageControllerDocs {
             @ApiResponse(responseCode = "500", description = "SERVER ERROR",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
-    @Operation(summary = "읽지 않은 메시지 리스트 조회",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    required = true,
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UnreadMessageResponse.class))))
+    @Operation(summary = "읽지 않은 메시지 리스트 조회")
     ResponseEntity<UnreadMessageResponse> getUnreadMessages(
             @Parameter(hidden = true) final Member member);
 
@@ -69,44 +65,7 @@ public interface MessageControllerDocs {
             @ApiResponse(responseCode = "500", description = "SERVER ERROR",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
-    @Operation(summary = "받은 전체 메시지 조회",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    required = true,
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = MessageListResponse.class),
-                            examples = {
-                                    @ExampleObject(name = "MessageRequestExample", value = """
-                                            {
-                                            \t"messages": [
-                                            \t\t{
-                                            \t\t\t"id": "메시지 고유 UUID",
-                                            \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
-                                            \t\t\t"event": {
-                                            \t\t\t\t"id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                                            \t\t\t\t"type": "CHEER_UP",
-                                            \t\t\t\t"content": "string",
-                                            \t\t\t\t"plannedAt": "2024-04-06"
-                                            \t\t\t},
-                                            \t\t\t"content": "메시지 내용",
-                                            \t\t\t"sentAt": "2024-04-06",
-                                            \t\t\t"type": "메시지 타입"
-                                            \t\t},
-                                            \t\t{
-                                            \t\t\t"id": "메시지 고유 UUID",
-                                            \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
-                                            \t\t\t"event": {
-                                            \t\t\t\t"id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                                            \t\t\t\t"type": "CHEER_UP",
-                                            \t\t\t\t"content": "string",
-                                            \t\t\t\t"plannedAt": "2024-04-06"
-                                            \t\t\t},
-                                            \t\t\t"content": "메시지 내용",
-                                            \t\t\t"sentAt": "2024-04-06",
-                                            \t\t\t"type": "메시지 타입"
-                                            \t\t}
-                                            \t]
-                                            }""")
-                            })))
+    @Operation(summary = "받은 전체 메시지 조회")
     ResponseEntity<MessageListResponse> getAllMessages(@Parameter(hidden = true) final Member member);
 
     @ApiResponses(value = {
