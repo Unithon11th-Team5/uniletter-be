@@ -1,6 +1,6 @@
 package unithon.uniletter.message.dto;
 
-import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -33,6 +33,6 @@ public class MessageRequest {
     private EventType type;
 
     @NotNull
-    @Future
+    @FutureOrPresent
     private LocalDate sendPlannedAt;
 }
