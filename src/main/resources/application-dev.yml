@@ -13,3 +13,16 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+
+oauth:
+  apple:
+    nonce:
+    redirect-uri:
+    client-id:
+    response-mode:
+    response-type:
+    scope:
+    state:
+
+jwt:
+  secret: "ToiguaOaVf3o3wD8XSnJV10MlWo0exackfAofpscMqs="
