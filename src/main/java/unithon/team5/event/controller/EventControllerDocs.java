@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import unithon.team5.common.error.ErrorResponse;
 import unithon.team5.event.dto.EventAddRequest;
-import unithon.team5.event.dto.EventResponse;
-import unithon.team5.event.dto.TypeResponse;
+import unithon.team5.event.dto.EventListResponse;
+import unithon.team5.event.dto.TypeListResponse;
 import unithon.team5.member.Member;
 import unithon.team5.message.dto.MessageListResponse;
 
-import java.util.List;
 import java.util.UUID;
+
 
 public interface EventControllerDocs {
 
@@ -50,13 +50,9 @@ public interface EventControllerDocs {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
             @ApiResponse(responseCode = "400", description = "BAD REQUEST",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND",
-                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
-            @ApiResponse(responseCode = "500", description = "SERVER ERROR",
-                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
     @Operation(summary = "이벤트 조회")
-    ResponseEntity<List<EventResponse>> readAllEvent(
+    ResponseEntity<EventListResponse> readAllEvent(
             @Parameter(description = "member id", example = "ete-dfdfd-fdfder", required = true)
             @RequestParam final String memberId);
 
@@ -64,7 +60,7 @@ public interface EventControllerDocs {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
     })
     @Operation(summary = "이벤트 타입 조회")
-    ResponseEntity<List<TypeResponse>> readAllTypes();
+    ResponseEntity<TypeListResponse> readAllTypes();
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),

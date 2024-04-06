@@ -1,12 +1,11 @@
 package unithon.team5.event.dto;
 
 import unithon.team5.event.Event;
-import unithon.team5.event.EventType;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public record EventResponse(String content, EventType type, LocalDate plannedAt) {
+public record EventResponse(String id, String content, String type, LocalDate plannedAt) {
 
     public static List<EventResponse> createList(final List<Event> event) {
         return event.stream()
@@ -15,6 +14,6 @@ public record EventResponse(String content, EventType type, LocalDate plannedAt)
     }
 
     public static EventResponse from(final Event event) {
-        return new EventResponse(event.getContent(), event.getType(), event.getPlannedAt());
+        return new EventResponse(event.getId().toString(), event.getContent(), event.getType().getKoreanName(), event.getPlannedAt());
     }
 }

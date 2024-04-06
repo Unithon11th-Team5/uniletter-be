@@ -4,9 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import unithon.team5.event.dto.EventAddRequest;
-import unithon.team5.event.dto.EventResponse;
-import unithon.team5.event.dto.TypeResponse;
+import unithon.team5.event.dto.*;
 import unithon.team5.event.service.EventService;
 import unithon.team5.member.Member;
 import unithon.team5.message.dto.MessageListResponse;
@@ -28,19 +26,21 @@ public class EventController implements EventControllerDocs {
         return ResponseEntity.created(URI.create("/events/" + uuid)).build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<EventResponse>> readAllEvent(@RequestParam final String memberId) {
+
+    @GetMapping("/events")
+    public ResponseEntity<EventListResponse> readAllEvent(@RequestParam final String memberId) {
         final var events = eventService.findMemberEventAfterToday(memberId);
         final List<EventResponse> responses = EventResponse.createList(events);
-        return ResponseEntity.ok(responses);
+        return ResponseEntity.ok(new EventListResponse(responses));
     }
 
-    @GetMapping("/types")
-    public ResponseEntity<List<TypeResponse>> readAllTypes() {
+    @GetMapping("/events/types")
+    public ResponseEntity<TypeListResponse> readAllTypes() {
         final List<TypeResponse> responses = eventService.findEventTypeAll().stream()
                 .map(TypeResponse::from)
                 .toList();
-        return ResponseEntity.ok(responses);
+
+        return ResponseEntity.ok(new TypeListResponse(responses));
     }
 
     @GetMapping("/messages")
