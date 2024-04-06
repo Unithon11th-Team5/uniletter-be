@@ -22,11 +22,11 @@ public class AppleTokenValidator {
     }
 
     private static void validateExp(final Map<String, Object> claims) {
-        final Long epochSecond = (Long) claims.get("exp");
+        final Integer epochSecond = (Integer) claims.get("exp");
         final Instant instant = Instant.ofEpochSecond(epochSecond);
         final LocalDateTime expTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 
-        if (expTime.isAfter(LocalDateTime.now())) {
+        if (!expTime.isAfter(LocalDateTime.now())) {
             throw new IllegalArgumentException("Id 토큰의 유효기간이 만료되었습니다.");
         }
     }
