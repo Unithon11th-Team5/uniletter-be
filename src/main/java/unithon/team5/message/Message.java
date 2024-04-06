@@ -7,7 +7,7 @@ import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import unithon.team5.common.BaseEntity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -23,7 +23,7 @@ public class Message extends BaseEntity {
                     final String senderName,
                     final String content,
                     final MessageType type,
-                    final LocalDateTime sendPlannedAt) {
+                    final LocalDate sendPlannedAt) {
         super(null);
         this.senderId = senderId;
         this.receiverId = receiverId;
@@ -49,7 +49,7 @@ public class Message extends BaseEntity {
     private MessageType type;
 
     @Column(nullable = false)
-    private LocalDateTime sendPlannedAt;
+    private LocalDate sendPlannedAt;
     
     private Boolean isRead;
 
@@ -62,7 +62,7 @@ public class Message extends BaseEntity {
                                  final String senderName,
                                  final String content,
                                  final MessageType type,
-                                 final LocalDateTime sendPlannedAt) {
+                                 final LocalDate sendPlannedAt) {
         return new Message(senderId, receiverId, senderName, content, type, sendPlannedAt);
     }
 }

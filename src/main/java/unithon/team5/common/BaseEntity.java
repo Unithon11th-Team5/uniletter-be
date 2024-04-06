@@ -6,7 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,11 +20,11 @@ public class BaseEntity {
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "last_modified_at")
     @LastModifiedDate
-    private Instant lastModifiedAt;
+    private LocalDateTime lastModifiedAt;
 
     public BaseEntity(UUID id) {
         this.id = id;

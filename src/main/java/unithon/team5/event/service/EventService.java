@@ -21,7 +21,7 @@ public class EventService {
     public String addEvent(final Member member, final LocalDate plannedAt, final String content) {
         final Event event = Event.builder()
                 .memberId(member.getId())
-                .plannedAt(plannedAt.atStartOfDay())
+                .plannedAt(plannedAt)
                 .content(content)
                 .build();
         final UUID eventId = eventRepository.save(event).getId();
@@ -31,6 +31,6 @@ public class EventService {
     @Transactional(readOnly = true)
     public Optional<Event> findMemberEventAfterToday(final String memberId) {
         final UUID memberUUID = UUID.fromString(memberId);
-        return eventRepository.findEventAfterToday(memberUUID, LocalDate.now().atStartOfDay());
+        return eventRepository.findEventAfterToday(memberUUID, LocalDate.now());
     }
 }

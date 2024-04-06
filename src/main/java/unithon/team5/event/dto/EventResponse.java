@@ -14,6 +14,6 @@ public record EventResponse(String content, LocalDate plannedAt) {
     }
 
     public static EventResponse from(final Event event) {
-        return new EventResponse(event.getContent(), event.getPlannedAt().toLocalDate());
+        return new EventResponse(event.getContent(), event.getPlannedAt());
     }
 }
