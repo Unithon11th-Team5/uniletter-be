@@ -26,11 +26,22 @@ public class LoginService {
 
     private Member registerMember(final String memberAppleIdentifier, final String email) {
         final String nickname = parseEmail(email);
+        final String validateNickname = generateValidateNickname(nickname);
+
         final Member member = Member.builder()
-                .nickname(nickname)
+                .nickname(validateNickname)
                 .identifier(memberAppleIdentifier)
                 .build();
         return memberRepository.save(member);
+    }
+
+    private String generateValidateNickname(final String nickname) {
+        String validateNickname = nickname;
+        int num = 1;
+        while (memberRepository.existsByNickname(validateNickname)) {
+            validateNickname = nickname + "-" + num;
+        }
+        return validateNickname;
     }
 
     private String parseEmail(final String email) {
