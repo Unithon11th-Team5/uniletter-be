@@ -12,7 +12,7 @@ import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
-public class EventController {
+public class EventController implements EventControllerDocs {
 
     private final EventService eventService;
 

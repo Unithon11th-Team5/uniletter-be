@@ -26,3 +26,9 @@ oauth:
 
 jwt:
   secret: "ToiguaOaVf3o3wD8XSnJV10MlWo0exackfAofpscMqs="
+
+springdoc:
+  swagger-ui:
+    path: /secret-message-docs.html
+    query-config-enabled: true
+    enabled: true
