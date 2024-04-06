@@ -1,6 +1,6 @@
 package unithon.uniletter.event.dto;
 
-import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -16,7 +16,7 @@ public record EventAddRequest(
         @NotNull
         EventType type,
 
-        @Future
+        @FutureOrPresent
         LocalDate plannedAt
 ) {
 }
