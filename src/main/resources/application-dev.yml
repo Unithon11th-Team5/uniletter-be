@@ -16,6 +16,13 @@ spring:
 
 oauth:
   apple:
-    clientId: adbcd
+    nonce:
+    redirect-uri:
+    client-id:
+    response-mode:
+    response-type:
+    scope:
+    state:
+
 jwt:
   secret: "ToiguaOaVf3o3wD8XSnJV10MlWo0exackfAofpscMqs="
