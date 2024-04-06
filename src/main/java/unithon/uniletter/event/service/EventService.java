@@ -40,7 +40,7 @@ public class EventService {
 
     @Transactional(readOnly = true)
     public List<Event> findMemberEventAfterToday(final String nickName) {
-        if (memberRepository.existsByNickname(nickName)) {
+        if (!memberRepository.existsByNickname(nickName)) {
             throw new NotFoundException("닉네임에 해당하는 멤버를 찾을 수 없습니다.");
         }
         return eventRepository.findEventsAfterToday(nickName, LocalDate.now());
