@@ -13,7 +13,8 @@
 
 
 ## 🛠️ Tech Stack
-<img width="800" alt="스크린샷 2024-04-07 오전 6 44 04" src="https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/b7d7dc79-f7c7-4c84-a779-707ef9ab979b">
+
+<p align="center"><img width="800" alt="스크린샷 2024-04-07 오전 6 44 04" src="https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/b7d7dc79-f7c7-4c84-a779-707ef9ab979b"></p>
 
 
 ## 💻 Backend Developer
