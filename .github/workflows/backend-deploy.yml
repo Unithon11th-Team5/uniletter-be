@@ -48,7 +48,9 @@ jobs:
       - name: 실행중인 도커 제거
         run:
           sudo docker stop $(sudo docker ps -q --filter "publish=8080")
-      - name: 새로 빌드한 도커 실행
-        run: |
+      - name: 도커 pull
+        run:
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5
+      - name: 새로 빌드한 도커 실행
+        run:
           sudo nohup docker run -p 8080:8080  --DB_HOSTNAME=${{ secrets.DB_HOSTNAME }} --DB_PORT=${{ secrets.DB_PORT }} --DB_DATABASE=${{ secrets.DB_DATABASE }} --DB_USERNAME=${{ secrets.DB_USERNAME }} --DB_PASSWORD=${{ secrets.DB_PASSWORD }} --JWT_SECRET=${{ secrets.JWT_SECRET}} > ~/be-log.out 2>&1 &
