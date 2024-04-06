@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import unithon.team5.common.error.ErrorResponse;
 import unithon.team5.event.dto.EventAddRequest;
 import unithon.team5.event.dto.EventListResponse;
-import unithon.team5.event.dto.TypeResponse;
+import unithon.team5.event.dto.TypeListResponse;
 import unithon.team5.member.Member;
-
-import java.util.List;
 
 public interface EventControllerDocs {
 
@@ -57,6 +55,6 @@ public interface EventControllerDocs {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
     })
-    @Operation(summary = "이벤트 조회")
-    ResponseEntity<List<TypeResponse>> readAllTypes();
+    @Operation(summary = "이벤트 타입 조회")
+    ResponseEntity<TypeListResponse> readAllTypes();
 }
