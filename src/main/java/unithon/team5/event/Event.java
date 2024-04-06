@@ -2,6 +2,7 @@ package unithon.team5.event;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import lombok.Builder;
 import lombok.Getter;
 import unithon.team5.common.BaseEntity;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Builder
 @Getter
 public class Event extends BaseEntity {
 
