@@ -27,14 +27,14 @@ public class EventController implements EventControllerDocs {
     }
 
 
-    @GetMapping("/events")
+    @GetMapping
     public ResponseEntity<EventListResponse> readAllEvent(@RequestParam final String memberId) {
         final var events = eventService.findMemberEventAfterToday(memberId);
         final List<EventResponse> responses = EventResponse.createList(events);
         return ResponseEntity.ok(new EventListResponse(responses));
     }
 
-    @GetMapping("/events/types")
+    @GetMapping("/types")
     public ResponseEntity<TypeListResponse> readAllTypes() {
         final List<TypeResponse> responses = eventService.findEventTypeAll().stream()
                 .map(TypeResponse::from)
