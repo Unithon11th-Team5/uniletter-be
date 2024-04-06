@@ -18,7 +18,7 @@ public class MessageResponse {
     private UUID id;
     private String senderName;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime sentAt;
     private MessageType type;
 

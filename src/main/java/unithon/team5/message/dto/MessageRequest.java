@@ -24,6 +24,6 @@ public class MessageRequest {
     @NotNull
     private MessageType type;
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime sendPlannedAt;
 }
