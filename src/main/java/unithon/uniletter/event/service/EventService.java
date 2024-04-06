@@ -36,9 +36,8 @@ public class EventService {
     }
 
     @Transactional(readOnly = true)
-    public List<Event> findMemberEventAfterToday(final String memberId) {
-        final UUID memberUUID = UUID.fromString(memberId);
-        return eventRepository.findEventsAfterToday(memberUUID, LocalDate.now());
+    public List<Event> findMemberEventAfterToday(final String nickName) {
+        return eventRepository.findEventsAfterToday(nickName, LocalDate.now());
     }
 
     public List<EventType> findEventTypeAll() {

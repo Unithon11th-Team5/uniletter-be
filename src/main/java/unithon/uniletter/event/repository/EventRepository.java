@@ -14,11 +14,13 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     @Query("""
             select event
             from Event event
-            where event.memberId = :memberId
+            join fetch Member member
+            on member.id = event.memberId
+            where member.nickname= :nickname
             AND event.plannedAt >= :today
             order by event.plannedAt ASC
             """)
-    List<Event> findEventsAfterToday(final UUID memberId, final LocalDate today);
+    List<Event> findEventsAfterToday(final String nickname, final LocalDate today);
 
     default Event getById(final UUID id) {
         return findById(id)

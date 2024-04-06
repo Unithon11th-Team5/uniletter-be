@@ -28,8 +28,8 @@ public class EventController implements EventControllerDocs {
 
 
     @GetMapping
-    public ResponseEntity<EventListResponse> readAllEvent(@RequestParam final String memberId) {
-        final var events = eventService.findMemberEventAfterToday(memberId);
+    public ResponseEntity<EventListResponse> readAllEvent(@RequestParam final String nickName) {
+        final var events = eventService.findMemberEventAfterToday(nickName);
         final List<EventResponse> responses = EventResponse.createList(events);
         return ResponseEntity.ok(new EventListResponse(responses));
     }
