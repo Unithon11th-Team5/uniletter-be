@@ -66,11 +66,4 @@ public class JwtProvider {
             throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
         }
     }
-
-    private void validateAppleIdToken(final Map<String, Object> claims, final String email) {
-        final Object extractedEmail = claims.get("email");
-        if (!extractedEmail.equals(email)) {
-            throw new IllegalArgumentException("유효하지 않은 id토큰이거나 이메일입니다.");
-        }
-    }
 }
