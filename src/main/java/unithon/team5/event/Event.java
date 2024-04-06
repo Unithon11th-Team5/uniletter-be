@@ -16,11 +16,11 @@ public class Event extends BaseEntity {
         super(null);
     }
 
-    private Event(final UUID id, final UUID memberId, final String content, final LocalDateTime expectedDeliveryDate) {
+    private Event(final UUID id, final UUID memberId, final String content, final LocalDateTime sendPlannedAt) {
         super(id);
         this.memberId = memberId;
         this.content = content;
-        this.expectedDeliveryDate = expectedDeliveryDate;
+        this.sendPlannedAt = sendPlannedAt;
     }
 
     @Column(updatable = false, nullable = false)
@@ -28,9 +28,9 @@ public class Event extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
-    
+
     @Column(nullable = false)
-    private LocalDateTime expectedDeliveryDate;
+    private LocalDateTime sendPlannedAt;
 
     public static Event create(final UUID memberId, final String content, final LocalDateTime expectedDeliveryDate) {
         return new Event(null, memberId, content, expectedDeliveryDate);
