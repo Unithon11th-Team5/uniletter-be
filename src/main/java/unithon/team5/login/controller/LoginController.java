@@ -1,6 +1,8 @@
 package unithon.team5.login.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,7 @@ public class LoginController {
 
     @PostMapping("/login/apple")
     public ResponseEntity<JwtTokenResponse> registerToken(
-            @RequestBody final LoginRequest loginRequest
+            @Valid @RequestBody final LoginRequest loginRequest
     ) {
         final var token = loginService.createToken(loginRequest.token(), loginRequest.email());
         return ResponseEntity.ok(new JwtTokenResponse(token));
