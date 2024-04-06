@@ -7,7 +7,6 @@ import unithon.uniletter.login.dto.LoginRequest;
 import unithon.uniletter.member.Member;
 import unithon.uniletter.member.repository.MemberRepository;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,20 +20,20 @@ public class LoginService {
     public String createToken(final LoginRequest loginRequest) {
         final String memberIdentifier = jwtProvider.decodeSub(loginRequest.token(), loginRequest.email());
         final Member registeredMember = memberRepository.findByIdentifier(memberIdentifier)
-                .orElseGet(() -> registerMember(memberIdentifier, loginRequest.email(), loginRequest.getName()));
+                .orElseGet(() -> registerMember(memberIdentifier, loginRequest.email(), loginRequest.name()));
         final UUID id = registeredMember.getId();
         return jwtProvider.createAccessTokenWith(id);
     }
 
-    private Member registerMember(final String memberAppleIdentifier, final String email, final Optional<String> name) {
+    private Member registerMember(final String memberAppleIdentifier, final String email, final String name) {
         final String nickname = parseEmail(email);
         final String validateNickname = generateValidateNickname(nickname);
-        final String memberName = name.orElse(validateNickname);
+        final String validatedName = (name.equals("")) ? validateNickname : name;
 
         final Member member = Member.builder()
                 .nickname(validateNickname)
                 .identifier(memberAppleIdentifier)
-                .name(memberName)
+                .name(validatedName)
                 .build();
 
         return memberRepository.save(member);
