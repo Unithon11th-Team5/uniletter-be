@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import unithon.uniletter.common.error.ForbiddenException;
+import unithon.uniletter.common.error.NotFoundException;
 import unithon.uniletter.event.Event;
 import unithon.uniletter.event.EventType;
 import unithon.uniletter.event.repository.EventRepository;
 import unithon.uniletter.member.Member;
+import unithon.uniletter.member.repository.MemberRepository;
 import unithon.uniletter.message.dto.MessageResponse;
 import unithon.uniletter.message.repository.MessageRepository;
 
@@ -22,6 +24,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final MessageRepository messageRepository;
+    private final MemberRepository memberRepository;
 
     @Transactional
     public String addEvent(final Member member, final LocalDate plannedAt, final String content, final EventType type) {
@@ -37,6 +40,9 @@ public class EventService {
 
     @Transactional(readOnly = true)
     public List<Event> findMemberEventAfterToday(final String nickName) {
+        if (memberRepository.existsByNickname(nickName)) {
+            throw new NotFoundException("닉네임에 해당하는 멤버를 찾을 수 없습니다.");
+        }
         return eventRepository.findEventsAfterToday(nickName, LocalDate.now());
     }
 
