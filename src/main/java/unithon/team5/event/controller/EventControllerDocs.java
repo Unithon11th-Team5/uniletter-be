@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,7 @@ public interface EventControllerDocs {
                                              	"plannedAt": "해당 이벤트 날짜",
                                              }""")
                             })))
-    ResponseEntity<Void> addEvent(@RequestBody final EventAddRequest eventAddRequest,
+    ResponseEntity<Void> addEvent(@RequestBody @Valid final EventAddRequest eventAddRequest,
                                   @Parameter(hidden = true)
                                   final Member member);
 
