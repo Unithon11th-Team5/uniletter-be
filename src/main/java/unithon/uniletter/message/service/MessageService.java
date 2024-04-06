@@ -42,10 +42,11 @@ public class MessageService {
                 request.getSendPlannedAt()));
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<MessageResponse> getUnreadMessages(final Member member) {
-
-        return getMessageWithEvent(messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false));
+        final List<Message> messages = messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false);
+        messages.forEach(Message::read);
+        return getMessageWithEvent(messages);
     }
 
     @Transactional(readOnly = true)
