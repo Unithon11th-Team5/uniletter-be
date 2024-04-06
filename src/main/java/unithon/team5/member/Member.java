@@ -18,15 +18,17 @@ public class Member extends BaseEntity {
         super(null);
     }
 
-    private Member(final UUID id, final String nickname, final String identifier) {
+    private Member(final UUID id, final String name, final String nickname, final String identifier) {
         super(id);
+        this.name = name;
         this.nickname = nickname;
         this.identifier = identifier;
     }
 
     @Builder
-    public Member(final String nickname, final String identifier) {
+    public Member(final String name, final String nickname, final String identifier) {
         super(null);
+        this.name = name;
         this.nickname = nickname;
         this.identifier = identifier;
     }
@@ -36,7 +38,9 @@ public class Member extends BaseEntity {
 
     private String identifier;
 
-    public static Member create(final String nickname, final String identifier) {
-        return new Member(null, nickname, identifier);
+    private String name;
+
+    public static Member create(final String name, final String nickname, final String identifier) {
+        return new Member(null, name, nickname, identifier);
     }
 }
