@@ -18,7 +18,6 @@ import unithon.team5.message.dto.MessageRequest;
 import unithon.team5.message.dto.MessageResponse;
 import unithon.team5.message.dto.UnreadMessageResponse;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface MessageControllerDocs {
@@ -48,8 +47,7 @@ public interface MessageControllerDocs {
                                             }""")
                             })))
     ResponseEntity<Void> sendMessage(@Valid @RequestBody final MessageRequest request,
-                                     @Parameter(hidden = true)
-                                     final Member member);
+                                     @Parameter(hidden = true) final Member member);
 
 
     @ApiResponses(value = {
@@ -63,8 +61,7 @@ public interface MessageControllerDocs {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UnreadMessageResponse.class))))
     ResponseEntity<UnreadMessageResponse> getUnreadMessages(
-            @Parameter(hidden = true)
-            final Member member);
+            @Parameter(hidden = true) final Member member);
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
@@ -79,22 +76,22 @@ public interface MessageControllerDocs {
                             examples = {
                                     @ExampleObject(name = "MessageRequestExample", value = """
                                             {
-                                            	"messages": [
-                                            		{
-                                            			"id": "메시지 고유 UUID",
-                                            			"senderName": "보낸 사람이 설정한 닉네임",
-                                            			"content": "메시지 내용",
-                                            			"sentAt": "2024-04-06",
-                                            			"type": "메시지 타입"
-                                            		},
-                                            		{
-                                            			"id": "메시지 고유 UUID",
-                                            			"senderName": "보낸 사람이 설정한 닉네임",
-                                            			"content": "메시지 내용",
-                                            			"sentAt": "2024-04-06",
-                                            			"type": "메시지 타입"
-                                            		}
-                                            	]
+                                            \t"messages": [
+                                            \t\t{
+                                            \t\t\t"id": "메시지 고유 UUID",
+                                            \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
+                                            \t\t\t"content": "메시지 내용",
+                                            \t\t\t"sentAt": "2024-04-06",
+                                            \t\t\t"type": "메시지 타입"
+                                            \t\t},
+                                            \t\t{
+                                            \t\t\t"id": "메시지 고유 UUID",
+                                            \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
+                                            \t\t\t"content": "메시지 내용",
+                                            \t\t\t"sentAt": "2024-04-06",
+                                            \t\t\t"type": "메시지 타입"
+                                            \t\t}
+                                            \t]
                                             }""")
                             })))
     ResponseEntity<MessageListResponse> getAllMessages(@Parameter(hidden = true) final Member member);
@@ -112,6 +109,5 @@ public interface MessageControllerDocs {
     ResponseEntity<MessageResponse> getSingleMessage(
             @Parameter(description = "id of message", example = "ete-dfdfd-fdfder", required = true)
             @PathVariable UUID id,
-            @Parameter(hidden = true)
-            final Member member);
+            @Parameter(hidden = true) final Member member);
 }

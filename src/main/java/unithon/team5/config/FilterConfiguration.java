@@ -8,8 +8,8 @@ import unithon.team5.log.LogFilter;
 
 @Configuration
 @RequiredArgsConstructor
-
 public class FilterConfiguration {
+
     @Bean
     public FilterRegistrationBean<LogFilter> myFilterRegistration() {
         FilterRegistrationBean<LogFilter> registration = new FilterRegistrationBean<>();

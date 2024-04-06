@@ -27,8 +27,8 @@ public interface LoginControllerDocs {
                             examples = {
                                     @ExampleObject(name = "LoginRequest Example", value = """
                                             {
-                                                "token": "apple id toekn...",
-                                                "email": "0217dayun@naver.com",
+                                            \t"token": "apple id toekn...",
+                                            \t"email": "0217dayun@naver.com",
                                             }""")
                             })))
     ResponseEntity<Void> registerToken(@Valid @RequestBody final LoginRequest request);
