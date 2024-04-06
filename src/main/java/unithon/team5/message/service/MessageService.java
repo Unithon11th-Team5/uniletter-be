@@ -63,7 +63,7 @@ public class MessageService {
         Message findMessage = messageRepository.findById(id).orElseThrow(
                 () -> new NotFoundException(String.format("[%s] message id not found", id)));
 
-        if (findMessage.getSenderId() != member.getId()) {
+        if (findMessage.getReceiverId() != member.getId()) {
             throw new ForbiddenException(String.format("[%s] message id's sender is not equal with current member", id));
         }
 
