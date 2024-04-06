@@ -1,5 +1,6 @@
 package unithon.team5.event.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class EventController implements EventControllerDocs {
     private final EventService eventService;
 
     @PostMapping("/events")
-    public ResponseEntity<Void> addEvent(@RequestBody final EventAddRequest eventAddRequest, final Member member) {
+    public ResponseEntity<Void> addEvent(@RequestBody @Valid final EventAddRequest eventAddRequest, final Member member) {
         final String uuid = eventService.addEvent(member, eventAddRequest.plannedAt(), eventAddRequest.content());
         return ResponseEntity.created(URI.create("/events/" + uuid)).build();
     }
