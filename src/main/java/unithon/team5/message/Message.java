@@ -6,6 +6,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import unithon.team5.common.BaseEntity;
+import unithon.team5.event.EventType;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -22,7 +23,7 @@ public class Message extends BaseEntity {
                     final UUID receiverId,
                     final String senderName,
                     final String content,
-                    final MessageType type,
+                    final EventType type,
                     final LocalDate sendPlannedAt) {
         super(null);
         this.senderId = senderId;
@@ -46,7 +47,7 @@ public class Message extends BaseEntity {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    private MessageType type;
+    private EventType type;
 
     @Column(nullable = false)
     private LocalDate sendPlannedAt;
@@ -61,7 +62,7 @@ public class Message extends BaseEntity {
                                  final UUID receiverId,
                                  final String senderName,
                                  final String content,
-                                 final MessageType type,
+                                 final EventType type,
                                  final LocalDate sendPlannedAt) {
         return new Message(senderId, receiverId, senderName, content, type, sendPlannedAt);
     }

@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import unithon.team5.message.MessageType;
+import unithon.team5.event.EventType;
 
 import java.time.LocalDate;
 
@@ -27,7 +27,7 @@ public class MessageRequest {
     private String content;
 
     @NotNull
-    private MessageType type;
+    private EventType type;
 
     @NotNull
     @Future
