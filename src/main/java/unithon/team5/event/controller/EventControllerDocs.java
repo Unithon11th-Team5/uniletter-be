@@ -16,8 +16,10 @@ import unithon.team5.event.dto.EventAddRequest;
 import unithon.team5.event.dto.EventResponse;
 import unithon.team5.event.dto.TypeResponse;
 import unithon.team5.member.Member;
+import unithon.team5.message.dto.MessageListResponse;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface EventControllerDocs {
 
@@ -61,6 +63,24 @@ public interface EventControllerDocs {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
     })
-    @Operation(summary = "이벤트 조회")
+    @Operation(summary = "이벤트 타입 조회")
     ResponseEntity<List<TypeResponse>> readAllTypes();
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "SUCCESS"),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "403", description = "FORBIDDEN",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "SERVER ERROR",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
+    })
+    @Operation(summary = "이벤트 관련 메시지 조회")
+    ResponseEntity<MessageListResponse> getMessages(
+            @Parameter(description = "event id", example = "ete-dfdfd-fdfder", required = true)
+            @RequestParam UUID eventId,
+            @Parameter(hidden = true)
+            final Member member);
 }
