@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unithon.team5.member.Member;
+import unithon.team5.message.dto.MessageListResponse;
 import unithon.team5.message.dto.MessageRequest;
 import unithon.team5.message.dto.MessageResponse;
 import unithon.team5.message.service.MessageService;
@@ -33,8 +34,9 @@ public class MessageController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MessageResponse>> getAllMessages(final Member member) {
-        return ResponseEntity.ok(messageService.getAllMessages(member));
+    public ResponseEntity<MessageListResponse> getAllMessages(final Member member) {
+        final List<MessageResponse> allMessages = messageService.getAllMessages(member);
+        return ResponseEntity.ok(new MessageListResponse(allMessages));
     }
 
     @GetMapping("/{id}")
