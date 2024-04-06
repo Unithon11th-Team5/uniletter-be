@@ -11,6 +11,7 @@ import unithon.team5.message.dto.MessageResponse;
 import unithon.team5.message.service.MessageService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,5 +30,15 @@ public class MessageController {
     @GetMapping("/unread")
     public ResponseEntity<List<MessageResponse>> getUnreadMessages(final Member member) {
         return ResponseEntity.ok(messageService.getUnreadMessages(member));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MessageResponse>> getAllMessages(final Member member) {
+        return ResponseEntity.ok(messageService.getAllMessages(member));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MessageResponse> getSingleMessage(@PathVariable UUID id, final Member member) {
+        return ResponseEntity.ok(messageService.getMessage(id, member));
     }
 }
