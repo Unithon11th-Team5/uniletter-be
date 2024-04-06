@@ -73,7 +73,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), exception.getMessage()));
     }
 
-    @ExceptionHandler({NoSuchElementException.class})
+    @ExceptionHandler({NoSuchElementException.class, NotFoundException.class})
     public ResponseEntity<ErrorResponse> handleNotFoundException(final RuntimeException exception) {
         logger.error("message", exception);
 
