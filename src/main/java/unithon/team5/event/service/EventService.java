@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import unithon.team5.common.error.ForbiddenException;
-import unithon.team5.common.error.NotFoundException;
 import unithon.team5.event.Event;
 import unithon.team5.event.EventType;
 import unithon.team5.event.repository.EventRepository;
@@ -47,17 +46,17 @@ public class EventService {
                 .toList();
     }
 
-    public List<MessageResponse> getMessagesFromEvent(final UUID eventId, Member member) {
+    @Transactional(readOnly = true)
+    public List<MessageResponse> getMessagesFromEvent(final UUID eventId, final Member member) {
 
-        Event findEvent = eventRepository.findById(eventId).orElseThrow(
-                () -> new NotFoundException(String.format("[%s] event id not found\", message.getEventId()", eventId)));
+        final Event findEvent = eventRepository.getById(eventId);
 
         if (!findEvent.getMemberId().equals(member.getId())) {
             throw new ForbiddenException(String.format("[%s] event's member is not equal with current member [%s]", eventId, member.getId()));
         }
 
-        return messageRepository.findAllByEventIdOrderBySendPlannedAtDesc(eventId)
-                .stream().map(message -> MessageResponse.of(message, findEvent))
+        return messageRepository.findAllByEventIdOrderBySendPlannedAtDesc(eventId).stream()
+                .map(message -> MessageResponse.of(message, findEvent))
                 .toList();
     }
 }

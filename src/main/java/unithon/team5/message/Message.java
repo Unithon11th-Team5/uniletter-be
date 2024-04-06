@@ -9,6 +9,7 @@ import unithon.team5.common.BaseEntity;
 import unithon.team5.event.EventType;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -55,7 +56,7 @@ public class Message extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDate sendPlannedAt;
-    
+
     private Boolean isRead;
 
     public void read() {
@@ -70,5 +71,9 @@ public class Message extends BaseEntity {
                                  final EventType type,
                                  final LocalDate sendPlannedAt) {
         return new Message(senderId, receiverId, eventId, senderName, content, type, sendPlannedAt);
+    }
+
+    public Optional<UUID> getOptionalEventId() {
+        return Optional.ofNullable(eventId);
     }
 }

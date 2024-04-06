@@ -1,11 +1,10 @@
 package unithon.team5.message.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import unithon.team5.common.error.ForbiddenException;
-import unithon.team5.common.error.NotFoundException;
 import unithon.team5.event.repository.EventRepository;
 import unithon.team5.member.Member;
 import unithon.team5.member.repository.MemberRepository;
@@ -31,8 +30,7 @@ public class MessageService {
     // TODO: 추후 알림 기능 구현하면 추가 로직 구현 필요
     public void sendMessage(final MessageRequest request, final Member loginMember) {
 
-        Member receiver = memberRepository.findByNickname(request.getReceiverNickname()).orElseThrow(
-                () -> new NotFoundException(String.format("[%s] nickname not found", request.getReceiverNickname())));
+        final Member receiver = memberRepository.getByNickname(request.getReceiverNickname());
 
         messageRepository.save(Message.create(
                 loginMember.getId(),
@@ -44,43 +42,39 @@ public class MessageService {
                 request.getSendPlannedAt()));
     }
 
+    @Transactional(readOnly = true)
     public List<MessageResponse> getUnreadMessages(final Member member) {
 
         return getMessageWithEvent(messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false));
     }
 
+    @Transactional(readOnly = true)
     public List<MessageResponse> getAllMessages(final Member member) {
 
         return getMessageWithEvent(messageRepository.findByReceiverIdOrderBySendPlannedAtDesc(member.getId()));
     }
 
+    @Transactional(readOnly = true)
     public MessageResponse getMessage(final UUID id, final Member member) {
 
-        Message findMessage = messageRepository.findById(id).orElseThrow(
-                () -> new NotFoundException(String.format("[%s] message id not found", id)));
+        final Message findMessage = messageRepository.getById(id);
 
         if (!findMessage.getReceiverId().equals(member.getId())) {
             throw new ForbiddenException(String.format("[%s] message id's receiver is not equal with current member [%s]", id, member.getId()));
         }
 
-        return MessageResponse.of(
-                findMessage,
-                eventRepository.findById(findMessage.getEventId()).orElseThrow(
-                        () -> new NotFoundException(String.format("[%s] event id not found", findMessage.getEventId()))));
+        return createMessageResponse(findMessage);
     }
 
-    private List<MessageResponse> getMessageWithEvent(List<Message> messages) {
-        return messages
-                .stream().map(
-                        message -> {
-                            if (message.getEventId() != null) {
-                                return MessageResponse.of(
-                                        message,
-                                        eventRepository.findById(message.getEventId()).orElseThrow(
-                                                () -> new NotFoundException(String.format("[%s] event id not found", message.getEventId()))));
-                            }
-                            return MessageResponse.of(message, null);
-                        }
-                ).toList();
+    private List<MessageResponse> getMessageWithEvent(final List<Message> messages) {
+        return messages.stream()
+                .map(this::createMessageResponse)
+                .toList();
+    }
+
+    private MessageResponse createMessageResponse(final Message message) {
+        return message.getOptionalEventId()
+                .map(eventId -> MessageResponse.of(message, eventRepository.getById(eventId)))
+                .orElseGet(() -> MessageResponse.of(message, null));
     }
 }
