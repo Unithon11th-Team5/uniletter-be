@@ -6,7 +6,8 @@
 
 ## 🔗 Link
 - iOS 배포 예정
-[Secret Message Swagger](https://secret-message.kro.kr/secret-message-docs.html))
+
+- [Secret Message Swagger](https://secret-message.kro.kr/secret-message-docs.html)
 
 
 ## 🛠️ Tech Stack
