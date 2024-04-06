@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import unithon.team5.common.error.ErrorResponse;
 import unithon.team5.member.Member;
+import unithon.team5.message.dto.MessageListResponse;
 import unithon.team5.message.dto.MessageRequest;
 import unithon.team5.message.dto.MessageResponse;
 
@@ -93,7 +94,7 @@ public interface MessageControllerDocs {
                                              	}
                                              ]""")
                             })))
-    ResponseEntity<List<MessageResponse>> getAllMessages(@Parameter(hidden = true) final Member member);
+    ResponseEntity<MessageListResponse> getAllMessages(@Parameter(hidden = true) final Member member);
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
