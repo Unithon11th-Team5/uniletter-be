@@ -19,8 +19,8 @@ public class SwaggerConfig {
     }
 
     private Info getPayoutServerInfo() {
-        return new Info().title("Secret Message Server API")
-                .description("Secret Message Server API 명세서입니다.")
+        return new Info().title("Uniletter Server API")
+                .description("Uniletter Server API 명세서입니다.")
                 .version("1.0.0");
     }
 }
