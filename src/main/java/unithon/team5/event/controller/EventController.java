@@ -19,7 +19,7 @@ public class EventController implements EventControllerDocs {
 
     @PostMapping("/events")
     public ResponseEntity<Void> addEvent(@RequestBody @Valid final EventAddRequest eventAddRequest, final Member member) {
-        final String uuid = eventService.addEvent(member, eventAddRequest.plannedAt(), eventAddRequest.content());
+        final String uuid = eventService.addEvent(member, eventAddRequest.plannedAt(), eventAddRequest.content(), eventAddRequest.type());
         return ResponseEntity.created(URI.create("/events/" + uuid)).build();
     }
 
