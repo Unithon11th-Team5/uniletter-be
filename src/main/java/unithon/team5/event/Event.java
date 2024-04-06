@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Builder
 @Getter
 public class Event extends BaseEntity {
 
@@ -18,11 +17,16 @@ public class Event extends BaseEntity {
         super(null);
     }
 
-    private Event(final UUID id, final UUID memberId, final String content, final LocalDateTime sendPlannedAt) {
+    private Event(final UUID id, final UUID memberId, final String content, final LocalDateTime plannedAt) {
         super(id);
         this.memberId = memberId;
         this.content = content;
-        this.sendPlannedAt = sendPlannedAt;
+        this.plannedAt = plannedAt;
+    }
+
+    @Builder
+    public Event(final UUID memberId, final String content, final LocalDateTime plannedAt) {
+        this(null, memberId, content, plannedAt);
     }
 
     @Column(updatable = false, nullable = false)
@@ -32,9 +36,9 @@ public class Event extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
-    private LocalDateTime sendPlannedAt;
+    private LocalDateTime plannedAt;
 
-    public static Event create(final UUID memberId, final String content, final LocalDateTime expectedDeliveryDate) {
-        return new Event(null, memberId, content, expectedDeliveryDate);
+    public static Event create(final UUID memberId, final String content, final LocalDateTime plannedAt) {
+        return new Event(null, memberId, content, plannedAt);
     }
 }
