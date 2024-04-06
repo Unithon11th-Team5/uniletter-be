@@ -6,5 +6,5 @@ import unithon.team5.event.Event;
 import java.util.UUID;
 
 public interface EventRepository extends JpaRepository<Event, UUID> {
-    
+
 }

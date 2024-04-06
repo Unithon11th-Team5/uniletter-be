@@ -25,8 +25,10 @@ public class Event extends BaseEntity {
 
     @Column(updatable = false, nullable = false)
     private UUID memberId;
+
     @Column(columnDefinition = "TEXT")
     private String content;
+    
     @Column(nullable = false)
     private LocalDateTime expectedDeliveryDate;
 
