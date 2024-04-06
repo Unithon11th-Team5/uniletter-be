@@ -17,7 +17,7 @@ public class LoginService {
 
     @Transactional
     public String createToken(final String idToken, final String email) {
-        final String memberIdentifier = jwtProvider.decodeSub(idToken);
+        final String memberIdentifier = jwtProvider.decodeSub(idToken, email);
         final Member registeredMember = memberRepository.findByIdentifier(memberIdentifier)
                 .orElseGet(() -> registerMember(memberIdentifier, email));
         final UUID id = registeredMember.getId();

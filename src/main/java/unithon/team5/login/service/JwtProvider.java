@@ -54,15 +54,23 @@ public class JwtProvider {
         return UUID.fromString(plainUUID);
     }
 
-    public String decodeSub(final String jwt) {
+    public String decodeSub(final String idToken, final String email) {
         try {
-            final String claimsBase64 = jwt.substring(jwt.indexOf('.') + 1, jwt.lastIndexOf('.'));
+            final String claimsBase64 = idToken.substring(idToken.indexOf('.') + 1, idToken.lastIndexOf('.'));
             final var decode = BASE64.decode(claimsBase64);
             final Map<String, Object> claims = objectMapper.readValue(decode, new TypeReference<>() {
             });
+            AppleTokenValidator.validateAppleIdToken(claims, email);
             return (String) claims.get("sub");
         } catch (final Exception exception) {
             throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
+        }
+    }
+
+    private void validateAppleIdToken(final Map<String, Object> claims, final String email) {
+        final Object extractedEmail = claims.get("email");
+        if (!extractedEmail.equals(email)) {
+            throw new IllegalArgumentException("유효하지 않은 id토큰이거나 이메일입니다.");
         }
     }
 }
