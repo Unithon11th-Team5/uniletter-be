@@ -53,6 +53,10 @@ public class Message extends BaseEntity {
     
     private Boolean isRead;
 
+    public void read() {
+        isRead = true;
+    }
+
     public static Message create(final UUID senderId,
                                  final UUID receiverId,
                                  final String senderName,
