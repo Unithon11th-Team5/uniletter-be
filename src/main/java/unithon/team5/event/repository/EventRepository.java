@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import unithon.team5.event.Event;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
             from Event event
             where event.memberId = :memberId
             AND event.plannedAt >= :today
-            order by event.plannedAt
+            order by event.plannedAt ASC
             """)
-    Optional<Event> findEventAfterToday(final UUID memberId, final LocalDate today);
+    List<Event> findEventsAfterToday(final UUID memberId, final LocalDate today);
 }
