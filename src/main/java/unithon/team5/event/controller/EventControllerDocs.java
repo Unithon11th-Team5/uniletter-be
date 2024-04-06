@@ -32,14 +32,12 @@ public interface EventControllerDocs {
                             schema = @Schema(implementation = EventAddRequest.class),
                             examples = {
                                     @ExampleObject(name = "EventAddRequestExample", value = """
-                                            {
-                                             	"content": "메시지 내용",
-                                             	"plannedAt": "해당 이벤트 날짜",
-                                             }""")
+                                            \t"content": "메시지 내용",
+                                            \t"plannedAt": "해당 이벤트 날짜",
+                                             """)
                             })))
     ResponseEntity<Void> addEvent(@RequestBody @Valid final EventAddRequest eventAddRequest,
-                                  @Parameter(hidden = true)
-                                  final Member member);
+                                  @Parameter(hidden = true) final Member member);
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
@@ -50,7 +48,7 @@ public interface EventControllerDocs {
             @ApiResponse(responseCode = "500", description = "SERVER ERROR",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
-    @Operation(summary = "이벤트 추가")
+    @Operation(summary = "이벤트 조회")
     ResponseEntity<EventResponse> readAllEvent(
             @Parameter(description = "member id", example = "ete-dfdfd-fdfder", required = true)
             @RequestParam final String memberId);
