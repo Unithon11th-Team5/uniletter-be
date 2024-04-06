@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: 실행중인 도커 제거
         run:
-          docker stop secret-message && docker rm secret-message && docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5 || true
+          sudo docker stop secret-message && sudo docker rm secret-message && sudo docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5 || true
       - name: 새로 빌드한 도커 실행
         run:
           sudo nohup docker run -d -p 8080:8080 --name secret-message -e TZ=Asia/Seoul --network host ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5
