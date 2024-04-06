@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import unithon.team5.common.error.ForbiddenException;
 import unithon.team5.common.error.NotFoundException;
 import unithon.team5.member.Member;
 import unithon.team5.member.repository.MemberRepository;
@@ -13,6 +14,7 @@ import unithon.team5.message.dto.MessageResponse;
 import unithon.team5.message.repository.MessageRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -48,5 +50,23 @@ public class MessageService {
                             return MessageResponse.of(message);
                         }
                 ).toList();
+    }
+
+    public List<MessageResponse> getAllMessages(final Member member) {
+
+        return messageRepository.findByReceiverIdOrderBySendPlannedAtDesc(member.getId())
+                .stream().map(MessageResponse::of).toList();
+    }
+
+    public MessageResponse getMessage(final UUID id, final Member member) {
+
+        Message findMessage = messageRepository.findById(id).orElseThrow(
+                () -> new NotFoundException(String.format("[%s] message id not found", id)));
+
+        if (findMessage.getSenderId() != member.getId()) {
+            throw new ForbiddenException(String.format("[%s] message id's sender is not equal with current member", id));
+        }
+
+        return MessageResponse.of(findMessage);
     }
 }
