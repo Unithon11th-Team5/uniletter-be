@@ -23,6 +23,12 @@ jobs:
       - name: gradle 빌드
         run: ./gradlew build
 
+      - name: 도커 허브에 로그인
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: 도커 빌더 생성 및 부팅
         uses: docker/setup-buildx-action@v2
 
