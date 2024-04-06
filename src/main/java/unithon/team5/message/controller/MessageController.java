@@ -9,6 +9,7 @@ import unithon.team5.member.Member;
 import unithon.team5.message.dto.MessageListResponse;
 import unithon.team5.message.dto.MessageRequest;
 import unithon.team5.message.dto.MessageResponse;
+import unithon.team5.message.dto.UnreadMessageResponse;
 import unithon.team5.message.service.MessageService;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class MessageController implements MessageControllerDocs {
     }
 
     @GetMapping("/unread")
-    public ResponseEntity<List<MessageResponse>> getUnreadMessages(final Member member) {
-        return ResponseEntity.ok(messageService.getUnreadMessages(member));
+    public ResponseEntity<UnreadMessageResponse> getUnreadMessages(final Member member) {
+        return ResponseEntity.ok(new UnreadMessageResponse(messageService.getUnreadMessages(member)));
     }
 
     @GetMapping
