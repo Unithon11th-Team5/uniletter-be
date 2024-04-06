@@ -15,7 +15,9 @@ public class FilterConfiguration {
         FilterRegistrationBean<LogFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new LogFilter());
         // 모든 URL에 필터 적용
-        registration.addUrlPatterns("/*");
+        registration.addUrlPatterns("/login/*");
+        registration.addUrlPatterns("/events/*");
+        registration.addUrlPatterns("/messages/*");
         registration.setOrder(1); // 필터 순서 지정 (optional)
         return registration;
     }
