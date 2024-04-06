@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public record EventAddRequest(
         @NotEmpty
-        @Length(max = 30)
+        @Length(max = 300)
         String content,
 
         @NotNull
