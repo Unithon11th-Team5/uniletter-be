@@ -33,6 +33,7 @@ public interface LoginControllerDocs {
                                             {
                                             \t"token": "apple id toekn...",
                                             \t"email": "0217dayun@naver.com"
+                                            \t"name": "다연"
                                             }""")
                             })))
     ResponseEntity<JwtTokenResponse> registerToken(@Valid @RequestBody final LoginRequest request);
@@ -44,6 +45,5 @@ public interface LoginControllerDocs {
     })
     @Operation(summary = "로그인한 사용자 정보 조회")
     ResponseEntity<LoginResponse> getLoginInfo(
-            @Parameter(hidden = true)
-            final Member member);
+            @Parameter(hidden = true) final Member member);
 }

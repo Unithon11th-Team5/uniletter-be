@@ -21,7 +21,7 @@ public class LoginController implements LoginControllerDocs {
     public ResponseEntity<JwtTokenResponse> registerToken(
             @Valid @RequestBody final LoginRequest loginRequest
     ) {
-        final var token = loginService.createToken(loginRequest.token(), loginRequest.email());
+        final var token = loginService.createToken(loginRequest);
         return ResponseEntity.ok(new JwtTokenResponse(token));
     }
 
