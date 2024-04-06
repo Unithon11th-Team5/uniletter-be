@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/messages")
-public class MessageController {
+public class MessageController implements MessageControllerDocs {
 
     private final MessageService messageService;
 
