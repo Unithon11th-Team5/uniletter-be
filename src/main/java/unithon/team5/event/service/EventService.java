@@ -9,6 +9,8 @@ import unithon.team5.event.repository.EventRepository;
 import unithon.team5.member.Member;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,5 +36,10 @@ public class EventService {
     public Optional<Event> findMemberEventAfterToday(final String memberId) {
         final UUID memberUUID = UUID.fromString(memberId);
         return eventRepository.findEventAfterToday(memberUUID, LocalDate.now());
+    }
+
+    public List<EventType> findEventTypeAll() {
+        return Arrays.stream(EventType.values())
+                .toList();
     }
 }

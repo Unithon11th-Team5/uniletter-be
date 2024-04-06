@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import unithon.team5.common.error.ErrorResponse;
 import unithon.team5.event.dto.EventAddRequest;
 import unithon.team5.event.dto.EventResponse;
+import unithon.team5.event.dto.TypeResponse;
 import unithon.team5.member.Member;
+
+import java.util.List;
 
 public interface EventControllerDocs {
 
@@ -33,13 +36,12 @@ public interface EventControllerDocs {
                             examples = {
                                     @ExampleObject(name = "EventAddRequestExample", value = """
                                             {
-                                             	"content": "메시지 내용",
-                                             	"plannedAt": "해당 이벤트 날짜",
-                                             }""")
+                                            \t"content": "메시지 내용",
+                                            \t"plannedAt": "해당 이벤트 날짜"
+                                            }""")
                             })))
     ResponseEntity<Void> addEvent(@RequestBody @Valid final EventAddRequest eventAddRequest,
-                                  @Parameter(hidden = true)
-                                  final Member member);
+                                  @Parameter(hidden = true) final Member member);
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
@@ -50,8 +52,14 @@ public interface EventControllerDocs {
             @ApiResponse(responseCode = "500", description = "SERVER ERROR",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))})
     })
-    @Operation(summary = "이벤트 추가")
+    @Operation(summary = "이벤트 조회")
     ResponseEntity<EventResponse> readAllEvent(
             @Parameter(description = "member id", example = "ete-dfdfd-fdfder", required = true)
             @RequestParam final String memberId);
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "SUCCESS"),
+    })
+    @Operation(summary = "이벤트 조회")
+    ResponseEntity<List<TypeResponse>> readAllTypes();
 }

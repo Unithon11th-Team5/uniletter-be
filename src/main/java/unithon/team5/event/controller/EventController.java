@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unithon.team5.event.dto.EventAddRequest;
 import unithon.team5.event.dto.EventResponse;
+import unithon.team5.event.dto.TypeResponse;
 import unithon.team5.event.service.EventService;
 import unithon.team5.member.Member;
 
 import java.net.URI;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,5 +31,13 @@ public class EventController implements EventControllerDocs {
                 .map(EventResponse::from)
                 .orElse(null);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/events/types")
+    public ResponseEntity<List<TypeResponse>> readAllTypes() {
+        final List<TypeResponse> responses = eventService.findEventTypeAll().stream()
+                .map(TypeResponse::from)
+                .toList();
+        return ResponseEntity.ok(responses);
     }
 }

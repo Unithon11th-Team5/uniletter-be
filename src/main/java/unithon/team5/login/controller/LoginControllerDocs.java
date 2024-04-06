@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.RequestBody;
+import unithon.team5.login.dto.JwtTokenResponse;
 import unithon.team5.login.dto.LoginRequest;
 
 public interface LoginControllerDocs {
@@ -27,9 +28,9 @@ public interface LoginControllerDocs {
                             examples = {
                                     @ExampleObject(name = "LoginRequest Example", value = """
                                             {
-                                                "token": "apple id toekn...",
-                                                "email": "0217dayun@naver.com",
+                                            \t"token": "apple id toekn...",
+                                            \t"email": "0217dayun@naver.com"
                                             }""")
                             })))
-    ResponseEntity<Void> registerToken(@Valid @RequestBody final LoginRequest request);
+    ResponseEntity<JwtTokenResponse> registerToken(@Valid @RequestBody final LoginRequest request);
 }
