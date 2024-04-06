@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unithon.team5.event.dto.EventAddRequest;
+import unithon.team5.event.dto.EventListResponse;
 import unithon.team5.event.dto.EventResponse;
 import unithon.team5.event.dto.TypeResponse;
 import unithon.team5.event.service.EventService;
@@ -26,10 +27,10 @@ public class EventController implements EventControllerDocs {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<List<EventResponse>> readAllEvent(@RequestParam final String memberId) {
+    public ResponseEntity<EventListResponse> readAllEvent(@RequestParam final String memberId) {
         final var events = eventService.findMemberEventAfterToday(memberId);
         final List<EventResponse> responses = EventResponse.createList(events);
-        return ResponseEntity.ok(responses);
+        return ResponseEntity.ok(new EventListResponse(responses));
     }
 
     @GetMapping("/events/types")
