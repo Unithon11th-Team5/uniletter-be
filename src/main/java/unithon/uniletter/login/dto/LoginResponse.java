@@ -1,26 +1,26 @@
 package unithon.uniletter.login.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import unithon.uniletter.member.Member;
 
 import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class LoginResponse {
 
-    private UUID id;
-    private String nickname;
-    private String identifier;
+    private final UUID id;
+    private final String nickname;
+    private final String identifier;
+    private final String name;
 
     public static LoginResponse of(Member member) {
         return new LoginResponse(
                 member.getId(),
                 member.getNickname(),
-                member.getIdentifier()
+                member.getIdentifier(),
+                member.getName()
         );
     }
 }
