@@ -39,7 +39,7 @@ public class LoginService {
         String validateNickname = nickname;
         int num = 1;
         while (memberRepository.existsByNickname(validateNickname)) {
-            validateNickname = nickname + "-" + num;
+            validateNickname = nickname + "-" + num++;
         }
         return validateNickname;
     }
