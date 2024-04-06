@@ -1,4 +1,4 @@
-<h3> 💌 특별한 날 특별한 사람에게 보낼 수 있는 예약 문자 서비스, Secret Message 💌 </h3>   
+<h3> 💌 특별한 날 특별한 사람에게 보낼 수 있는 예약 문자 서비스, UNILETTER 💌 </h3>   
 
 다가오는 나의 특별한 이벤트를 저장할 수 있어요 📝 </br>
 나의 특별한 날을 응원할 수 있어요 📣 </br>
@@ -7,7 +7,7 @@
 ## 🔗 Link
 - iOS 배포 예정
 
-- [Secret Message Swagger](https://secret-message.kro.kr/secret-message-docs.html)
+- [UNILETTER Swagger](https://secret-message.kro.kr/secret-message-docs.html)
 
 
 ## 🛠️ Tech Stack
