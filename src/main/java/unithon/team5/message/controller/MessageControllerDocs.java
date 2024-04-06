@@ -41,6 +41,7 @@ public interface MessageControllerDocs {
                                             {
                                             \t"receiverNickname": "nick123",
                                             \t"senderName": "보내는 닉네임",
+                                            \t"eventId": "(있는 경우만) 대상 event id",
                                             \t"content": "보낼 메시지",
                                             \t"type": "메시지 타입",
                                             \t"sendPlannedAt": "2024-04-28"
@@ -80,6 +81,7 @@ public interface MessageControllerDocs {
                                             \t\t{
                                             \t\t\t"id": "메시지 고유 UUID",
                                             \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
+                                            \t\t\t"eventId": "(있는 경우만) 대상 event id",
                                             \t\t\t"content": "메시지 내용",
                                             \t\t\t"sentAt": "2024-04-06",
                                             \t\t\t"type": "메시지 타입"
@@ -87,6 +89,7 @@ public interface MessageControllerDocs {
                                             \t\t{
                                             \t\t\t"id": "메시지 고유 UUID",
                                             \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
+                                            \t\t\t"eventId": "(있는 경우만) 대상 event id",
                                             \t\t\t"content": "메시지 내용",
                                             \t\t\t"sentAt": "2024-04-06",
                                             \t\t\t"type": "메시지 타입"
