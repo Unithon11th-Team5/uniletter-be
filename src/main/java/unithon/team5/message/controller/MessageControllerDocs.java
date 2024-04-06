@@ -81,7 +81,12 @@ public interface MessageControllerDocs {
                                             \t\t{
                                             \t\t\t"id": "메시지 고유 UUID",
                                             \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
-                                            \t\t\t"eventId": "(있는 경우만) 대상 event id",
+                                            \t\t\t"event": {
+                                            \t\t\t\t"id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                            \t\t\t\t"type": "CHEER_UP",
+                                            \t\t\t\t"content": "string",
+                                            \t\t\t\t"plannedAt": "2024-04-06"
+                                            \t\t\t},
                                             \t\t\t"content": "메시지 내용",
                                             \t\t\t"sentAt": "2024-04-06",
                                             \t\t\t"type": "메시지 타입"
@@ -89,7 +94,12 @@ public interface MessageControllerDocs {
                                             \t\t{
                                             \t\t\t"id": "메시지 고유 UUID",
                                             \t\t\t"senderName": "보낸 사람이 설정한 닉네임",
-                                            \t\t\t"eventId": "(있는 경우만) 대상 event id",
+                                            \t\t\t"event": {
+                                            \t\t\t\t"id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                            \t\t\t\t"type": "CHEER_UP",
+                                            \t\t\t\t"content": "string",
+                                            \t\t\t\t"plannedAt": "2024-04-06"
+                                            \t\t\t},
                                             \t\t\t"content": "메시지 내용",
                                             \t\t\t"sentAt": "2024-04-06",
                                             \t\t\t"type": "메시지 타입"
