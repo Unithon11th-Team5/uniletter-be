@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import unithon.team5.event.EventType;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -21,6 +22,8 @@ public class MessageRequest {
 
     @NotEmpty
     private String senderName;
+
+    private UUID eventId;
 
     @NotEmpty
     @Length(max = 300)

@@ -35,6 +35,7 @@ public class MessageService {
         messageRepository.save(Message.create(
                 loginMember.getId(),
                 receiver.getId(),
+                request.getEventId(),
                 request.getSenderName(),
                 request.getContent(),
                 request.getType(),
