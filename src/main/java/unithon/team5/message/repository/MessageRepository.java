@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface MessageRepository extends JpaRepository<Message, UUID> {
     List<Message> findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(UUID receiverId, Boolean isRead);
     List<Message> findByReceiverIdOrderBySendPlannedAtDesc(UUID receiverId);
+    List<Message> findAllByEventIdOrderBySendPlannedAtDesc(UUID eventId);
 }
