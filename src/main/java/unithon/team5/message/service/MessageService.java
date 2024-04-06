@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import unithon.team5.common.error.ForbiddenException;
 import unithon.team5.common.error.NotFoundException;
+import unithon.team5.event.repository.EventRepository;
 import unithon.team5.member.Member;
 import unithon.team5.member.repository.MemberRepository;
 import unithon.team5.message.Message;
@@ -25,6 +26,7 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
     private final MemberRepository memberRepository;
+    private final EventRepository eventRepository;
 
     // TODO: 추후 알림 기능 구현하면 추가 로직 구현 필요
     public void sendMessage(final MessageRequest request, final Member loginMember) {
@@ -44,19 +46,12 @@ public class MessageService {
 
     public List<MessageResponse> getUnreadMessages(final Member member) {
 
-        return messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false)
-                .stream().map(
-                        message -> {
-                            message.read();
-                            return MessageResponse.of(message);
-                        }
-                ).toList();
+        return getMessageWithEvent(messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false));
     }
 
     public List<MessageResponse> getAllMessages(final Member member) {
 
-        return messageRepository.findByReceiverIdOrderBySendPlannedAtDesc(member.getId())
-                .stream().map(MessageResponse::of).toList();
+        return getMessageWithEvent(messageRepository.findByReceiverIdOrderBySendPlannedAtDesc(member.getId()));
     }
 
     public MessageResponse getMessage(final UUID id, final Member member) {
@@ -68,6 +63,24 @@ public class MessageService {
             throw new ForbiddenException(String.format("[%s] message id's receiver is not equal with current member [%s]", id, member.getId()));
         }
 
-        return MessageResponse.of(findMessage);
+        return MessageResponse.of(
+                findMessage,
+                eventRepository.findById(findMessage.getEventId()).orElseThrow(
+                        () -> new NotFoundException(String.format("[%s] event id not found", findMessage.getEventId()))));
+    }
+
+    private List<MessageResponse> getMessageWithEvent(List<Message> messages) {
+        return messages
+                .stream().map(
+                        message -> {
+                            if (message.getEventId() != null) {
+                                return MessageResponse.of(
+                                        message,
+                                        eventRepository.findById(message.getEventId()).orElseThrow(
+                                                () -> new NotFoundException(String.format("[%s] event id not found", message.getEventId()))));
+                            }
+                            return MessageResponse.of(message, null);
+                        }
+                ).toList();
     }
 }
