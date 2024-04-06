@@ -29,7 +29,7 @@ jobs:
       - name: 도커 이미지 빌드 및 푸시
         uses: docker/build-push-action@v4
         with:
-          file: Dockerfile-prod
+          file: Dockerfile
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5:latest
