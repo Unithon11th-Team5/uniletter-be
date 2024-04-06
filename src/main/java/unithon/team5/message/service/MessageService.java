@@ -9,7 +9,10 @@ import unithon.team5.member.Member;
 import unithon.team5.member.repository.MemberRepository;
 import unithon.team5.message.Message;
 import unithon.team5.message.dto.MessageRequest;
+import unithon.team5.message.dto.MessageResponse;
 import unithon.team5.message.repository.MessageRepository;
+
+import java.util.List;
 
 
 @Service
@@ -34,5 +37,16 @@ public class MessageService {
                 request.getContent(),
                 request.getType(),
                 request.getSendPlannedAt()));
+    }
+
+    public List<MessageResponse> getUnreadMessages(final Member member) {
+
+        return messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false)
+                .stream().map(
+                        message -> {
+                            message.read();
+                            return MessageResponse.of(message);
+                        }
+                ).toList();
     }
 }
