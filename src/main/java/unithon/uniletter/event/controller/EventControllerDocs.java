@@ -50,6 +50,8 @@ public interface EventControllerDocs {
             @ApiResponse(responseCode = "200", description = "SUCCESS"),
             @ApiResponse(responseCode = "400", description = "BAD REQUEST",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND",
+                    content = {@Content(schema = @Schema(implementation = ErrorResponse.class))}),
     })
     @Operation(summary = "이벤트 조회")
     ResponseEntity<EventListResponse> readAllEvent(
@@ -77,6 +79,5 @@ public interface EventControllerDocs {
     ResponseEntity<MessageListResponse> getMessages(
             @Parameter(description = "event id", example = "ete-dfdfd-fdfder", required = true)
             @RequestParam UUID eventId,
-            @Parameter(hidden = true)
-            final Member member);
+            @Parameter(hidden = true) final Member member);
 }
