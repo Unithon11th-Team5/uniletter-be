@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: 실행중인 도커 제거
         run:
-          sudo docker stop $(sudo docker ps -q --filter "publish=8080")
+          sudo docker stop $(sudo docker ps -q --filter "publish=8080" 2>/dev/null) || true
       - name: 도커 pull
         run:
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5
