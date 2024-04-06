@@ -21,6 +21,7 @@ public class Message extends BaseEntity {
 
     private Message(final UUID senderId,
                     final UUID receiverId,
+                    final UUID eventId,
                     final String senderName,
                     final String content,
                     final EventType type,
@@ -28,6 +29,7 @@ public class Message extends BaseEntity {
         super(null);
         this.senderId = senderId;
         this.receiverId = receiverId;
+        this.eventId = eventId;
         this.senderName = senderName;
         this.content = content;
         this.type = type;
@@ -40,6 +42,8 @@ public class Message extends BaseEntity {
 
     @Column(nullable = false, updatable = false)
     private UUID receiverId;
+
+    private UUID eventId;
 
     @Column(nullable = false)
     private String senderName;
@@ -60,10 +64,11 @@ public class Message extends BaseEntity {
 
     public static Message create(final UUID senderId,
                                  final UUID receiverId,
+                                 final UUID eventId,
                                  final String senderName,
                                  final String content,
                                  final EventType type,
                                  final LocalDate sendPlannedAt) {
-        return new Message(senderId, receiverId, senderName, content, type, sendPlannedAt);
+        return new Message(senderId, receiverId, eventId, senderName, content, type, sendPlannedAt);
     }
 }
