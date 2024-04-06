@@ -21,8 +21,8 @@ public class SwaggerConfig {
                         new Components().addSecuritySchemes(
                                 "oauth2 token",
                                 new SecurityScheme()
-                                        .scheme("bearer")
-                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("Bearer ")
+                                        .type(SecurityScheme.Type.APIKEY)
                                         .bearerFormat("jwt")
                                         .name("oauth2")
                         ));
