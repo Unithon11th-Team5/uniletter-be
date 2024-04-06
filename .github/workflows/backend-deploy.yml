@@ -47,8 +47,8 @@ jobs:
     steps:
       - name: 실행중인 도커 제거
         run:
-          sudo docker stop secret-message && sudo docker rm secret-message && sudo docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5 || true
+          sudo docker stop uni-11th-team5 && sudo docker rm uni-11th-team5 && sudo docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5 || true
       - name: 새로 빌드한 도커 실행
         run:
-          sudo nohup docker run -d -p 8080:8080 --name secret-message -e TZ=Asia/Seoul --network host ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5
+          sudo nohup docker run -d -p 8080:8080 --name uni-11th-team5 -e TZ=Asia/Seoul --network host ${{ secrets.DOCKERHUB_USERNAME }}/uni-11th-team5
           --DB_HOSTNAME=${{ secrets.DB_HOSTNAME }} --DB_PORT=${{ secrets.DB_PORT }} --DB_DATABASE=${{ secrets.DB_DATABASE }} --DB_USERNAME${{ secrets.DB_USERNAME}} --DB_PASSWORD${{ secrets.DB_PASSWORD}} --JWT_SECRET${{ secrets.JWT_SECRET}} > be-log.out 2>&1 &
