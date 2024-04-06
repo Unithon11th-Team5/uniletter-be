@@ -14,7 +14,8 @@
 
 
 ## 💻 Backend Developer
-|<img src="https://avatars.githubusercontent.com/u/66549638?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/52441906?v=4" width="150" height="150"/>|
+
+|<img src="https://avatars.githubusercontent.com/hong-slie" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/chominho96" width="150" height="150"/>|
 |:-:|:-:|
 |[@hong-sile](https://github.com/hong-sile)|[@chominho96](https://github.com/chominho96)|
 
