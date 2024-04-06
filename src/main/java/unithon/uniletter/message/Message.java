@@ -49,6 +49,7 @@ public class Message extends BaseEntity {
     @Column(nullable = false)
     private String senderName;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Enumerated(EnumType.STRING)
