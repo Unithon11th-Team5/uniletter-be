@@ -16,3 +16,9 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
+
+springdoc:
+  swagger-ui:
+    path: /secret-message-docs.html
+    query-config-enabled: true
+    enabled: true
