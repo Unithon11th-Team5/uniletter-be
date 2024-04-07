@@ -1,8 +1,13 @@
+![UNI-10](https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/000fe888-0e8d-4a76-8032-198e01186110)
 <h3> 💌 특별한 날 특별한 사람에게 보낼 수 있는 예약 문자 서비스, UNILETTER 💌 </h3>   
 
-다가오는 나의 특별한 이벤트를 저장할 수 있어요 📝 </br>
-나의 특별한 날을 응원할 수 있어요 📣 </br>
-친구의 특별한 날에 응원 메시지를 받을 수 있도록 예약 문자를 보낼 수 있어요 💌 </br>
+
+다가오는 나의 특별한 이벤트를 저장할 수 있어요 📝
+
+나의 특별한 날을 응원할 수 있어요 📣 
+
+친구의 특별한 날에 응원 메시지를 받을 수 있도록 예약 문자를 보낼 수 있어요 💌
+
 
 ## 🔗 Link
 - iOS 배포 예정
@@ -11,7 +16,8 @@
 
 
 ## 🛠️ Tech Stack
-<img width="795" alt="스크린샷 2024-04-06 오후 5 35 46" src="https://github.com/Unithon11th-Team5/backend/assets/66549638/4077d577-24b2-4252-8614-6a97a67e96c0">
+
+<p align="center"><img width="800" alt="스크린샷 2024-04-07 오전 6 44 04" src="https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/b7d7dc79-f7c7-4c84-a779-707ef9ab979b"></p>
 
 
 ## 💻 Backend Developer
