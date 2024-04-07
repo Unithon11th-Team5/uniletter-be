@@ -46,7 +46,7 @@ public class MessageService {
 
     @Transactional
     public List<MessageResponse> getUnreadMessages(final Member member) {
-        final List<Message> messages = messageRepository.readArriveMessage(member.getId(), false, timeGenerator.generate());
+        final List<Message> messages = messageRepository.readArriveMessage(member.getId(), timeGenerator.generate());
         messages.forEach(Message::read);
         return getMessageWithEvent(messages);
     }
