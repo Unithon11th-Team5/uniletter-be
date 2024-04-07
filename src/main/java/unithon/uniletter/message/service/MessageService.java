@@ -12,6 +12,7 @@ import unithon.uniletter.message.Message;
 import unithon.uniletter.message.dto.MessageRequest;
 import unithon.uniletter.message.dto.MessageResponse;
 import unithon.uniletter.message.repository.MessageRepository;
+import unithon.uniletter.time.service.TimeGenerator;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +24,7 @@ import java.util.UUID;
 @Transactional
 public class MessageService {
 
+    private final TimeGenerator timeGenerator;
     private final MessageRepository messageRepository;
     private final MemberRepository memberRepository;
     private final EventRepository eventRepository;
@@ -44,7 +46,7 @@ public class MessageService {
 
     @Transactional
     public List<MessageResponse> getUnreadMessages(final Member member) {
-        final List<Message> messages = messageRepository.findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(member.getId(), false);
+        final List<Message> messages = messageRepository.readArriveMessage(member.getId(), false, timeGenerator.generate());
         messages.forEach(Message::read);
         return getMessageWithEvent(messages);
     }

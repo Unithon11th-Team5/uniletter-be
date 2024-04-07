@@ -10,6 +10,7 @@ import unithon.uniletter.event.repository.EventRepository;
 import unithon.uniletter.member.Member;
 import unithon.uniletter.message.dto.MessageResponse;
 import unithon.uniletter.message.repository.MessageRepository;
+import unithon.uniletter.time.service.TimeGenerator;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -22,6 +23,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final MessageRepository messageRepository;
+    private final TimeGenerator timeGenerator;
 
     @Transactional
     public String addEvent(final Member member, final LocalDate plannedAt, final String content, final EventType type) {
@@ -37,7 +39,7 @@ public class EventService {
 
     @Transactional(readOnly = true)
     public List<Event> findMemberEventAfterToday(final String nickName) {
-        return eventRepository.findEventsAfterToday(nickName, LocalDate.now());
+        return eventRepository.findEventsAfterToday(nickName, timeGenerator.generate());
     }
 
     public List<EventType> findEventTypeAll() {
