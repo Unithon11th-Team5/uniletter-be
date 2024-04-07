@@ -1,14 +1,25 @@
 package unithon.uniletter.message.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import unithon.uniletter.common.error.NotFoundException;
 import unithon.uniletter.message.Message;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 public interface MessageRepository extends JpaRepository<Message, UUID> {
-    List<Message> findByReceiverIdAndIsReadOrderBySendPlannedAtAsc(UUID receiverId, Boolean isRead);
+    @Query("""
+            select message
+            from Message message
+            join fetch Member member
+            on member.id = message.receiverId
+            where message.isRead = false
+            and message.sendPlannedAt <= :today
+            order by message.sendPlannedAt asc
+            """)
+    List<Message> readArriveMessage(final UUID receiverId, final Boolean isRead, final LocalDate today);
 
     List<Message> findByReceiverIdOrderBySendPlannedAtDesc(UUID receiverId);
 
