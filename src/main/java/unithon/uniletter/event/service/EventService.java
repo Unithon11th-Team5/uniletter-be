@@ -12,6 +12,7 @@ import unithon.uniletter.member.Member;
 import unithon.uniletter.member.repository.MemberRepository;
 import unithon.uniletter.message.dto.MessageResponse;
 import unithon.uniletter.message.repository.MessageRepository;
+import unithon.uniletter.time.service.TimeGenerator;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final MessageRepository messageRepository;
+    private final TimeGenerator timeGenerator;
     private final MemberRepository memberRepository;
 
     @Transactional
@@ -43,7 +45,7 @@ public class EventService {
         if (!memberRepository.existsByNickname(nickName)) {
             throw new NotFoundException("닉네임에 해당하는 멤버를 찾을 수 없습니다.");
         }
-        return eventRepository.findEventsAfterToday(nickName, LocalDate.now());
+        return eventRepository.findEventsAfterToday(nickName, timeGenerator.generate());
     }
 
     public List<EventType> findEventTypeAll() {
