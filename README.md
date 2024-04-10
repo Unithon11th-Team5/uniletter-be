@@ -1,12 +1,10 @@
-![UNI-10](https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/000fe888-0e8d-4a76-8032-198e01186110)
+<img width="1920" alt="01 표지" src="https://github.com/Unithon11th-Team5/uniletter-be/assets/66549638/bf21ca77-24a6-4935-9225-8e22c9fae4fc">
 <h3> 💌 특별한 날 특별한 사람에게 보낼 수 있는 예약 문자 서비스, UNILETTER 💌 </h3>   
 
 
-다가오는 나의 특별한 이벤트를 저장할 수 있어요 📝
-
-나의 특별한 날을 응원할 수 있어요 📣 
-
-친구의 특별한 날에 응원 메시지를 받을 수 있도록 예약 문자를 보낼 수 있어요 💌
+다가오는 나의 특별한 이벤트를 저장할 수 있어요 📝 <br>
+나의 특별한 날을 응원할 수 있어요 📣 <br>
+친구의 특별한 날에 응원 메시지를 받을 수 있도록 예약 문자를 보낼 수 있어요 💌 <br>
 
 
 ## 🔗 Link
